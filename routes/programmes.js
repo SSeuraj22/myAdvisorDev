@@ -62,7 +62,7 @@ router.post("/add/:programmeID/:courseID", async (req, res) => {
         //check if course is already added to a programme
         const programmecourse = await ProgrammeCourse.findOne({where: {programmeID: req.params.programmeID, courseID: req.params.courseID}});
         if(programmecourse){
-            return res.status(401).send("Course already exists for this Programme.");
+            return res.status(401).send("Course already added to this Programme.");
         }
         else{
             await ProgrammeCourse.create({
@@ -77,6 +77,24 @@ router.post("/add/:programmeID/:courseID", async (req, res) => {
         }
     }
     catch(err){
+        console.log("Error: ", err.message);
+        res.status(500).send("Server Error");
+    }
+});
+
+// delete a selected programme from the database
+router.delete("/delete/:programmename", async (req, res) => {
+    try {
+        const programme = await Programme.findOne({where: { name: req.params.programmename }});
+        if(!programme) {
+            return res.status(401).send("Programme not found.");
+        }
+        else {
+            await programme.destroy();
+            res.status(200).send("Programme Removed");
+        }
+    }
+    catch (err) {
         console.log("Error: ", err.message);
         res.status(500).send("Server Error");
     }

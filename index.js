@@ -1,6 +1,6 @@
 // constants for express routes, paths and db connection
 const dotenv = require('dotenv').config();
-//console.log(process.env.studentSecret);
+
 
 const express = require("express");
 const app = express();
@@ -9,9 +9,7 @@ const path = require("path");
 const pool = require("./db");
 const passport = require("passport");
 
-//
-//const sequelize = require('sequelize');
-//const cookieParser = require('cookie-parser');
+
 
 const multer  = require('multer')
 const upload = multer({storage: multer.memoryStorage()})
@@ -22,10 +20,6 @@ const port = process.env.PORT || 5000;
 // app connection and resources
 app.use(cors());
 app.use(express.json());
-
-//
-//app.use(express.urlencoded({extended: true}));
-//app.use(cookieParser());
 
 // models
 const Student = require("./models/Student");
