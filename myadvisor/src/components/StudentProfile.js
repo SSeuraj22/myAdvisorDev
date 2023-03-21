@@ -339,10 +339,10 @@ const StudentProfile = (props) => {
         var today = new Date(); // Today's date
         var currentSem; // Value to store current semester
 
-        var courses = await getProgrammeCourses(programmeId);
+        var courses = getProgrammeCourses(programmeId);
 
-        
-        for (var i=0; i<courses.length; i++) { // Initialise Courses for Degree using thier Level and Semester
+        // console.log("message: ", courses[0].semester)
+        for (var i=0; i<courses.length; i++) { // Initialise Courses for Degree using their Level and Semester
             if (courses[i].level === "I") {
                 if (courses[i].semester === "1") {
                     Y1S1[courses[i].courseCode] = "N";
