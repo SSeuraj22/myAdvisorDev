@@ -312,10 +312,13 @@ const Finish = (props) => {
                                 }
                             </div>
 
+                        {/*
                             <div className="card body-tips" >
                                 <p className="almost-header2">Potential Degree Class:</p>
                                 <p className="almost-text2">Here's a list of all the courses you chose:</p>
                             </div>
+                            */
+                        }
                                 
                             
 
