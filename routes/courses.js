@@ -48,7 +48,7 @@ router.get("/view/:code", async (req, res) => {
 router.post("/add", async (req, res) => {
     try {
         // destructure data entered
-        const {courseCode, courseTitle, credits, level, semester, type, prerequisites, description, coursework, finalExam, groupProject, individualWork, practicalCoursework, courseworkExam, projectPres, project, presentation, assignment, labAssessment, midSemesterMcq, projectReport} = req.body;
+        const {courseCode, courseTitle, credits, level, semester, prerequisites, description, coursework, finalExam, groupProject, individualWork, practicalCoursework, courseworkExam, projectPres, project, presentation, assignment, labAssessment, midSemesterMcq, projectReport, projectReportPres, projectAndPres, performanceReports, projectSoftwareApp} = req.body;
 
         // check if courses is already added
         const course = await Course.findOne({where : { courseCode }});
@@ -62,7 +62,6 @@ router.post("/add", async (req, res) => {
                 credits, 
                 level, 
                 semester, 
-                type, 
                 prerequisites, 
                 description, 
                 coursework,
@@ -77,7 +76,11 @@ router.post("/add", async (req, res) => {
                 assignment,
                 labAssessment,
                 midSemesterMcq,
-                projectReport
+                projectReport,
+                projectReportPres,
+                projectAndPres,
+                performanceReports,
+                projectSoftwareApp
             })
             .then(() => {
                 return res.status(200).send("Course added!");
@@ -96,7 +99,7 @@ router.post("/add", async (req, res) => {
 // update a selected course
 router.put("/edit/:code", async (req, res) => {
     try {
-        const {courseCode, courseTitle, credits, level, semester, type, prerequisites, description, coursework, finalExam, groupProject, individualWork, practicalCoursework, courseworkExam, projectPres, project, presentation, assignment, labAssessment, midSemesterMcq, projectReport} = req.body;
+        const {courseCode, courseTitle, credits, level, semester, prerequisites, description, coursework, finalExam, groupProject, individualWork, practicalCoursework, courseworkExam, projectPres, project, presentation, assignment, labAssessment, midSemesterMcq, projectReport, projectReportPres, projectAndPres, performanceReports, projectSoftwareApp} = req.body;
         
         const course = await Course.findOne({where: { courseCode: req.params.code }});
         
@@ -119,9 +122,6 @@ router.put("/edit/:code", async (req, res) => {
             }
             if (semester) {
                 course.semester = semester;
-            }
-            if (type) {
-                course.type = type;
             }
             if (prerequisites) {
                 course.prerequisites = prerequisites;
@@ -219,6 +219,34 @@ router.put("/edit/:code", async (req, res) => {
             }
             else{//if null
                 course.projectReport = projectReport; //set to null
+            }
+
+            if(projectReportPres){
+                course.projectReportPres = projectReportPres;
+            }
+            else{//if null
+                course.projectReportPres = projectReportPres;//set to null
+            }
+
+            if(projectAndPres){
+                course.projectAndPres = projectAndPres;
+            }
+            else{//if null
+                course.projectAndPres = projectAndPres;//set to null
+            }
+
+            if(performanceReports){
+                course.performanceReports = performanceReports;
+            }
+            else{//if null
+                course.performanceReports = performanceReports;//set to null
+            }
+
+            if(projectSoftwareApp){
+                course.projectSoftwareApp = projectSoftwareApp;
+            }
+            else{//if null
+                course.projectSoftwareApp = projectSoftwareApp;//set to null
             }
             
             await course.save();

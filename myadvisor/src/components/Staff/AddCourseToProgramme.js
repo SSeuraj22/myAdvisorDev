@@ -18,17 +18,13 @@ function AddCourseToProgramme({setShowAddCourseProg, refreshTable}) {
     */    
         const [validated, setValidated] = useState(false);
 
-        const [programme, setProgramme] = useState("None"); // Store which programme was selected
-        const [course, setCourse] = useState("None"); // Store which course was selected
+        //const [programme, setProgramme] = useState("None"); // Store which programme was selected
+        //const [course, setCourse] = useState("None"); // Store which course was selected
 
         var programmes = PullProgrammes(); // Get all degree programmes from the database
         var courses = PullCourses(); // Get all degree courses from the database
         //console.log(programmes)
 
-        
-            
-            
-        
 
         /*
             notifyAdded is used to display toast notifications for events. It displays a green toast.
@@ -57,6 +53,7 @@ function AddCourseToProgramme({setShowAddCourseProg, refreshTable}) {
 
             const programmeName = form.elements.programmename.value;//get programme name from the form
             const courseFullName = form.elements.coursefullname.value;//get the course full name from the form
+            const courseType = form.elements.coursetype.value;
 
             //To get the programmeID of the selected programme
             const programmeFound = programmes.find(p => {
@@ -73,9 +70,10 @@ function AddCourseToProgramme({setShowAddCourseProg, refreshTable}) {
             
             const formData = {
                 programmeID : programmeId,
-                courseID : courseId
+                courseID : courseId,
+                type: courseType
             }
-            addCourseToProgramme(formData)
+            addCourseToProgramme(formData);
         };
 
         /*
@@ -136,6 +134,15 @@ function AddCourseToProgramme({setShowAddCourseProg, refreshTable}) {
                                         return <option value={courses[j].courseCode + " " + courses[j].courseTitle}>{courses[j].courseCode + " " + courses[j].courseTitle}</option> 
                                     })
                                 }
+                            </Form.Control>
+                    </Form.Group> 
+
+                    <Form.Group controlId="coursetype">
+                        <Form.Label>Select Type</Form.Label>
+                            <Form.Control required as="select">
+                                <option value="None">Choose type</option>
+                                <option>Core</option>
+                                <option>Elective</option>
                             </Form.Control>
                     </Form.Group> 
         

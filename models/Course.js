@@ -24,10 +24,6 @@ const Course = db.define("course", {
         allowNull: false,
         type: Sequelize.STRING,
     },
-    type: {
-        allowNull: false,
-        type: Sequelize.STRING,
-    },
     prerequisites: {
         allowNull: false,
         type: Sequelize.STRING,
@@ -85,6 +81,22 @@ const Course = db.define("course", {
         type: Sequelize.STRING,
     },
     projectReport: {
+        allowNull: true,
+        type: Sequelize.STRING,
+    },
+    projectReportPres: {
+        allowNull: true,
+        type: Sequelize.STRING,
+    },
+    projectAndPres: {
+        allowNull: true,
+        type: Sequelize.STRING,
+    },
+    performanceReports: {
+        allowNull: true,
+        type: Sequelize.STRING,
+    },
+    projectSoftwareApp: {
         allowNull: true,
         type: Sequelize.STRING,
     }

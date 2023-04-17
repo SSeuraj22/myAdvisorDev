@@ -19,11 +19,12 @@ function AddCourse({setShow, refreshTable}) {
         The checkBoxState array is used to keep track of the checked state of the checkboxes.
         It's initial state is false.
     */    
-        const [checkBoxState, setCheckBoxState] = useState(new Array(13).fill(false));
+        const [checkBoxState, setCheckBoxState] = useState(new Array(17).fill(false));
+        //console.log(checkBoxState);
 
         const assessments = ["coursework", "finalExam", "groupProject", "individualWork", "practicalCoursework", "courseworkExam", 
                              "projectPres", "project", "presentation", "assignment", "labAssessment", "midSemesterMcq", 
-                             "projectReport"];
+                             "projectReport", "projectReportPres", "projectAndPres", "performanceReports", "projectSoftwareApp"];
                             
     /*
         notifyAdded is used to display toast notifications for events. It displays a green toast.
@@ -73,7 +74,7 @@ function AddCourse({setShow, refreshTable}) {
             credits : form.elements.credits.value,
             semester : form.elements.semester.value,
             level : form.elements.level.value,
-            type: form.elements.type.value,
+            //type: form.elements.type.value,
             prerequisites : form.elements.prerequisites.value,
             description: form.elements.description.value,
             coursework: String(form.elements.coursework.value) + "%",
@@ -88,7 +89,11 @@ function AddCourse({setShow, refreshTable}) {
             assignment: String(form.elements.assignment.value) + "%",
             labAssessment: String(form.elements.labAssessment.value) + "%",
             midSemesterMcq: String(form.elements.midSemesterMcq.value) + "%",
-            projectReport: String(form.elements.projectReport.value) + "%"
+            projectReport: String(form.elements.projectReport.value) + "%",
+            projectReportPres: String(form.elements.projectReportPres.value) + "%",
+            projectAndPres: String(form.elements.projectAndPres.value) + "%",
+            performanceReports: String(form.elements.performanceReports.value) + "%",
+            projectSoftwareApp: String(form.elements.projectSoftwareApp.value) + "%"
         }
         
         
@@ -160,17 +165,15 @@ function AddCourse({setShow, refreshTable}) {
                 </Form.Group>
 
                 <Form.Row>
-                    <Form.Group as={Col} md="3" controlId="credits">
+                    <Form.Group as={Col} md="4" controlId="credits">
                         <Form.Label>Credits</Form.Label>
                         <Form.Control required as="select">
-                            <option>1</option>
-                            <option>2</option>
                             <option>3</option>
-                            <option>4</option>
+                            <option>6</option>
                         </Form.Control>
                     </Form.Group>
 
-                    <Form.Group as={Col} md="3" controlId="semester">
+                    <Form.Group as={Col} md="4" controlId="semester">
                         <Form.Label>Semester</Form.Label>
                         <Form.Control required as="select">
                             <option>1</option>
@@ -179,20 +182,12 @@ function AddCourse({setShow, refreshTable}) {
                         </Form.Control>
                     </Form.Group>
 
-                    <Form.Group as={Col} md="3" controlId="level">
+                    <Form.Group as={Col} md="4" controlId="level">
                         <Form.Label>Level</Form.Label>
                         <Form.Control required as="select">
                             <option>I</option>
                             <option>II</option>
                             <option>III</option>
-                        </Form.Control>
-                    </Form.Group>
-
-                    <Form.Group as={Col} md="3" controlId="type">
-                        <Form.Label>Type</Form.Label>
-                        <Form.Control required as="select">
-                            <option>Core</option>
-                            <option>Elective</option>
                         </Form.Control>
                     </Form.Group>
                 </Form.Row>
@@ -263,6 +258,26 @@ function AddCourse({setShow, refreshTable}) {
                         
                         <Form.Group as={Col} controlId="projectReport" className="form-inline">
                             <Form.Check label="Project Report" id="12" name="Project Report" onChange={handleChange} style={styleCheckbox}></Form.Check>
+                            <Form.Control type="number" min="0" max="100"/>
+                        </Form.Group>
+
+                        <Form.Group as={Col} controlId="projectReportPres" className="form-inline">
+                            <Form.Check label="Project Report and Presentation" id="13" name="Project Report and Presentation" onChange={handleChange} style={styleCheckbox}></Form.Check>
+                            <Form.Control type="number" min="0" max="100"/>
+                        </Form.Group>
+
+                        <Form.Group as={Col} controlId="projectAndPres" className="form-inline">
+                            <Form.Check label="Project and Presentation" id="14" name="Project and Presentation" onChange={handleChange} style={styleCheckbox}></Form.Check>
+                            <Form.Control type="number" min="0" max="100"/>
+                        </Form.Group>
+
+                        <Form.Group as={Col} controlId="performanceReports" className="form-inline">
+                            <Form.Check label="Performance Reports" id="15" name="Performance Reports" onChange={handleChange} style={styleCheckbox}></Form.Check>
+                            <Form.Control type="number" min="0" max="100"/>
+                        </Form.Group>
+
+                        <Form.Group as={Col} controlId="projectSoftwareApp" className="form-inline">
+                            <Form.Check label="Project or Software Application" id="16" name="Project or Software Application" onChange={handleChange} style={styleCheckbox}></Form.Check>
                             <Form.Control type="number" min="0" max="100"/>
                         </Form.Group>
 
