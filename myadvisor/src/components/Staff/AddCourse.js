@@ -20,7 +20,6 @@ function AddCourse({setShow, refreshTable}) {
         It's initial state is false.
     */    
         const [checkBoxState, setCheckBoxState] = useState(new Array(17).fill(false));
-        //console.log(checkBoxState);
 
         const assessments = ["coursework", "finalExam", "groupProject", "individualWork", "practicalCoursework", "courseworkExam", 
                              "projectPres", "project", "presentation", "assignment", "labAssessment", "midSemesterMcq", 

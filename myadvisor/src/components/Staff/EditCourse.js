@@ -49,8 +49,6 @@ function EditCourse({setShow, row, refreshTable}) {
         HandleChange gets the checkboxes that were checked and stores them in an array.
     */    
         const handleChange = (event) => {
-            //console.log(event.target.checked);
-            //console.log("submit "+checkBoxStateSubmit);
             
             const updateCheckboxState = checkBoxStateSubmit.map((checkbox, count) => {
                 if(count === parseInt(event.target.id)){
@@ -61,8 +59,6 @@ function EditCourse({setShow, row, refreshTable}) {
                 }
                 
             });
-            //console.log("update "+updateCheckboxState);
-            //console.log("up "+updateCheckboxState);
             setCheckBoxStateSubmit(updateCheckboxState);
         };
 
@@ -71,7 +67,6 @@ function EditCourse({setShow, row, refreshTable}) {
     */    
     const handleSubmit = (event) => {
         const form = event.currentTarget;
-        //console.log("current "+checkBoxStateSubmit);
         if (form.checkValidity() === false) {
           event.preventDefault();
           event.stopPropagation();
@@ -108,8 +103,6 @@ function EditCourse({setShow, row, refreshTable}) {
             projectSoftwareApp: String(form.elements.projectSoftwareApp.value) + "%"
         }
 
-        //console.log(formData);
-        //console.log("submit "+checkBoxState);
         //Get the unselected assessments and set them to null
         for(var i=0; i<checkBoxStateSubmit.length; i++){
             if(checkBoxStateSubmit[i] === false){
@@ -124,7 +117,6 @@ function EditCourse({setShow, row, refreshTable}) {
         editCourse creates a put request to the server, which edits the specified course.
     */    
     async function editCourse(data, code) {
-        //console.log(JSON.stringify(data));
         try {
           const res = await fetch("/courses/edit/" + code, {
             method: "PUT",
