@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import PullProgrammes from "../PullProgrammes";
 import PullCourses from "../PullCourses";
-
+import PullProgrammeCourses from "../PullProgrammeCourses";
 /*
     AddCourseToProgramme allows a staff member to add offered courses to a programme in the system.
 */
@@ -23,8 +23,8 @@ function AddCourseToProgramme({setShowAddCourseProg, refreshTable}) {
 
         var programmes = PullProgrammes(); // Get all degree programmes from the database
         var courses = PullCourses(); // Get all degree courses from the database
-
-
+        var programmeC = PullProgrammeCourses();
+        console.log(programmeC);
         /*
             notifyAdded is used to display toast notifications for events. It displays a green toast.
         */    
@@ -74,6 +74,8 @@ function AddCourseToProgramme({setShowAddCourseProg, refreshTable}) {
             }
             addCourseToProgramme(formData);
         };
+
+
 
         /*
             addCourseToProgramme creates a post request to the server, which adds a new course to a programme in the system.
@@ -128,14 +130,15 @@ function AddCourseToProgramme({setShowAddCourseProg, refreshTable}) {
 
                     <Form.Group controlId="coursefullname">
                         <Form.Label>Select Course</Form.Label>
-                            <Form.Control required as="select">
-                                <option value="None">Choose a course</option>
-                                {
+                             { <Form.Control required as="select">
+                                 <option value="None">Choose a course</option>
+                                 {
                                     Array.from({length: courses.length}, (_, j) => {
-                                        return <Form.Check label={courses[j].courseCode + " " + courses[j].courseTitle} name={courses[j].courseCode + " " + courses[j].courseTitle}/> 
-                                    })
+                                        return <option value={courses[j].courseCode + " " + courses[j].courseTitle}>
+                                            {courses[j].courseCode + " " + courses[j].courseTitle}</option> 
+                                   })
                                 }
-                            </Form.Control>
+                             </Form.Control> }
                     </Form.Group> 
 
                     <Form.Group controlId="coursetype">

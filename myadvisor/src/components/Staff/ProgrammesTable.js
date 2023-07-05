@@ -5,6 +5,8 @@ import ToolkitProvider, { Search, CSVExport } from 'react-bootstrap-table2-toolk
 import filterFactory, { selectFilter  } from 'react-bootstrap-table2-filter';
 import { Modal, Tabs, Tab, Button } from "react-bootstrap";
 import AddCourseToProgramme from "./AddCourseToProgramme";
+import PullProgrammes from "../PullProgrammes";
+import PullCourses from "../PullCourses";
 
 //TABLE SETUP
 
@@ -15,6 +17,27 @@ const columns = [
     { dataField: 'name', text: 'Programme', csvText: 'name', sort: true },
 ]
 
+
+// const columns = [
+//     { dataField: 'courseCode', text: 'Course Code', csvText: 'Course Code', sort: true },
+//     { dataField: 'courseTitle', text: 'Course Title', csvText: 'Course Title' },
+//     { dataField: 'level', text: 'Level', csvText: 'Level' },
+//     { dataField: 'prerequisites', text: 'Pre-requisites', csvText: 'Pre-requisites' },
+// ]
+
+// const pCol = this.state.programmes;
+
+// // Get the keys of the first item in the programmes array (pCol)
+// const pColKeys = Object.keys(pCol[0]);
+
+// const updatedColumns = [
+//     columns,
+//     pColKeys.map(key => ({
+//         dataField: key,
+//         text: key,
+//         csvText: key
+//     }))
+// ];
 /*
     selectLevelOptions allows you to filter the level table column
 */
@@ -38,7 +61,8 @@ const selectSemesterOptions = {
 */
 const selectTypeOptions = {
     Core: 'Core',
-    Elective: 'Elective'
+    Elective: 'Elective',
+    Foundation: 'Foundation'
 };
 
 /*
@@ -111,6 +135,7 @@ const courseOptions = {
 };
 
 const { SearchBar, ClearSearchButton  } = Search;
+const { ExportCSVButton } = CSVExport;
 
 /*
     ProgrammesTable is a component that displays the programmes in the system in a table.
@@ -196,12 +221,16 @@ function ProgrammesTable({programmes, loading}) {
                     data={ programmes }
                     columns={ columns }
                     search
+                    exportCSV={{
+                        fileName: 'programmes.csv',
+                    }}
                 >
                 {
                     props => (
                     <div>
                         <SearchBar { ...props.searchProps } />
                         <ClearSearchButton { ...props.searchProps } />
+                        <ExportCSVButton { ...props.csvProps }>Export CSV</ExportCSVButton>
                         <BootstrapTable { ...props.baseProps } { ...paginationTableProps } defaultSorted={ defaultSorted } rowEvents={ rowEvents } hover/>
                     </div>
                     )
