@@ -21,7 +21,7 @@ const StudentProfile = (props) => {
     function uploadedHandler() {
         window.location.reload();
     }
-    //details
+
     var details = PullDetails(localStorage.getItem("username")); // Get student details from database
     //console.log(details);
     var studentCourses = PullStudentCourses(localStorage.getItem("username")); // Get student courses from database
